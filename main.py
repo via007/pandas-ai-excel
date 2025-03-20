@@ -2,8 +2,10 @@ import os
 import tempfile
 import pandas as pd
 import pandasai as pai
+import matplotlib.pyplot as plt
 from pandasai_openai import OpenAI
 
+plt.rcParams['font.sans-serif'] = ['SimHei']
 
 os.makedirs("./exports/temp", exist_ok=True)
 api_token = os.getenv('OPENAI_KEY')
