@@ -1,4 +1,5 @@
 # AI-Excel 数据处理与分析
+![企业微信截图_17423706687874](https://github.com/user-attachments/assets/c839561e-2023-4e1f-b37f-445da545ab86)
 
 
 ---
