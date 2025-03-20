@@ -1,7 +1,9 @@
 # AI-Excel 数据处理与分析
 ![企业微信截图_17423706687874](https://github.com/user-attachments/assets/c839561e-2023-4e1f-b37f-445da545ab86)
 
-
+在线测试
+您可以通过以下链接在线体验本项目：
+https://huggingface.co/spaces/viaho/pandas-ai-excel
 ---
 
 ## 简介
