@@ -12,7 +12,7 @@ os.makedirs("./exports/temp", exist_ok=True)
 api_token = os.getenv('OPENAI_KEY')
 
 
-llm = OpenAI(api_token="sk-2080251fa71e4c5991ad8836b35b0c00", api_base="https://dashscope.aliyuncs.com/compatible-mode/v1")
+llm = OpenAI(api_token="sk-", api_base="https://dashscope.aliyuncs.com/compatible-mode/v1")
 llm.model = 'qwen-max-0125'  # qwen-max-0125 deepseek-v3
 pai.config.set({"llm": llm})
 
