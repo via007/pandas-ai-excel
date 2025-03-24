@@ -53,7 +53,7 @@ export OPENAI_KEY="your-deepseek-api-key"
 ### 4. 启动项目
 
 ```bash
-python gradio_app.py
+python app.py
 ```
 
 启动后，默认在 `http://127.0.0.1:7860` 生成 Gradio 界面，可通过 `share=True` 创建公共链接。

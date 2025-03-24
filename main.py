@@ -5,14 +5,14 @@ import pandasai as pai
 import matplotlib.pyplot as plt
 from pandasai_openai import OpenAI
 
-plt.rcParams['font.sans-serif'] = ['Hiragino Sans GB']  # 使用 Mac OS 自带的苹方字体
+plt.rcParams['font.sans-serif'] = ['Hiragino Sans GB']  # Hiragino Sans GB  windows系统实使用 SimHei 图表显示中文
 plt.rcParams['axes.unicode_minus'] = False
 
 os.makedirs("./exports/temp", exist_ok=True)
-api_token = os.getenv('OPENAI_KEY')
+api_token = os.getenv('OPENAI_KEY')  # os.getenv('OPENAI_KEY')
 
 
-llm = OpenAI(api_token="sk-", api_base="https://dashscope.aliyuncs.com/compatible-mode/v1")
+llm = OpenAI(api_token=api_token, api_base="https://dashscope.aliyuncs.com/compatible-mode/v1")
 llm.model = 'qwen-max-0125'  # qwen-max-0125 deepseek-v3
 pai.config.set({"llm": llm})
 
@@ -33,7 +33,7 @@ def process_file_and_question(file_path, question):
             df_x.to_csv(temp_file.name, index=False)
             df = pai.read_csv(temp_file.name)
 
-        response = df.chat(question)
+        response = pai.chat(question, df)
         if response.error:
             return response.error, None, None
         if response.type == 'dataframe':
@@ -48,5 +48,4 @@ def process_file_and_question(file_path, question):
             return response.value, None, None
 
     except Exception as e:
-        print(e)
-        return f"系统异常，请重试...", None, None
+        return f"系统异常，请重试...{str(e)}", None, None
