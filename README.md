@@ -8,20 +8,21 @@ https://huggingface.co/spaces/viaho/pandas-ai-excel
 
 ## 简介
 
-**AI-Excel 数据处理与分析** 是一个开源项目，旨在帮助用户通过自然语言轻松处理和分析 Excel 数据。该项目基于 **DeepSeek** 提供的免费接口(国内非官方，比如阿里云，华为等)，结合 **PandasAI** 库，支持对 Excel 文件（CSV 和 XLSX 格式）的高效操作。用户只需上传文件并提出问题，即可获得数据分析结果、图表或处理后的文件。
+**AI-Excel 数据处理与分析** 是一个开源项目，旨在帮助用户通过自然语言轻松处理和分析 Excel 数据。项目基于 **PandasAI**，通过 OpenAI 兼容接口连接主流 LLM（默认 DeepSeek），支持对 Excel 文件（CSV 和 XLSX 格式）的高效操作。用户只需上传文件并提出问题，即可获得数据分析结果、图表或处理后的文件。
 
-项目特别为中国用户设计，充分利用 **DeepSeek** 在中文环境下的自然语言处理能力，确保操作简单、结果准确。DeepSeek 的免费接口让用户无需额外成本即可享受高效的 Excel 数据处理体验。
+项目特别为中文场景优化，提供多文件多表管理、关系视图（Join）与数据概览报告等能力，兼顾易用性与可扩展性。
 
 ---
 
 ## 功能特点
 
 - **自然语言交互**：用中文提问即可操作 Excel 数据，例如“哪一行数据最高？”或“生成一个销量趋势图”。
-- **支持多种格式**：兼容 `.csv` 和 `.xlsx` 文件，自动处理文件读取和转换。
-- **免费高效**：DeepSeek 提供免费 API，结合 PandasAI，确保数据处理快速且无成本。
-- **数据预览**：上传文件后，自动展示前 100 行数据，便于快速了解内容。
-- **多样化输出**：支持文本结果、图表生成或导出处理后的 Excel 文件。
-- **开源可扩展**：代码完全开源，欢迎用户根据需求进行定制开发。
+- **多文件多表**：支持同时上传多个 CSV/XLSX，Excel 可读取全部 Sheet，并统一管理。
+- **数据预览**：上传后展示前 100 行预览，便于快速了解数据。
+- **数据概览**：自动生成字段类型、缺失率、唯一值、示例值等概览报告，可导出。
+- **关系视图**：可选择两张表进行 Join，预览结果并保存为新数据集。
+- **多样化输出**：文本、图表、导出结果（xlsx/csv/json/png）。
+- **灵活 LLM 配置**：内置配置页支持 DeepSeek/OpenAI/阿里云/Gemini/自定义兼容接口。
 
 ---
 
@@ -42,12 +43,24 @@ cd pandas-ai-excel
 pip install -r requirements.txt
 ```
 
-### 3. 配置 DeepSeek API
+### 3. 配置 LLM（可选）
 
-运行前需设置 DeepSeek 的 API 密钥，通过环境变量 `OPENAI_KEY` 加载。
+你可以在页面“配置”页填写 API Key，也可以用环境变量作为默认配置。
 
+**DeepSeek（默认）**
 ```bash
+export LLM_PROVIDER="DeepSeek"
 export OPENAI_KEY="your-deepseek-api-key"
+export OPENAI_BASE_URL="https://api.deepseek.com/v1"
+export OPENAI_MODEL="deepseek-chat"
+```
+
+**Gemini（OpenAI 兼容）**
+```bash
+export LLM_PROVIDER="Gemini(OpenAI兼容)"
+export OPENAI_KEY="your-gemini-api-key"
+export OPENAI_BASE_URL="https://generativelanguage.googleapis.com/v1beta/openai/"
+export OPENAI_MODEL="gemini-1.5-flash"
 ```
 
 ### 4. 启动项目
@@ -63,8 +76,9 @@ python app.py
 ## 示例
 
 ### 1. 上传文件
-- 支持 `.csv` 或 `.xlsx` 文件。
-- 上传后左侧显示前 100 行数据预览。
+- 支持 `.csv` 或 `.xlsx` 文件，多文件上传。
+- Excel 可选择读取所有 Sheet。
+- 上传后显示前 100 行数据预览。
 
 ### 2. 输入问题
 - 在右侧输入与数据相关的问题，例如：
@@ -76,7 +90,11 @@ python app.py
 - 根据问题返回：
   - **文本**：如分析结果。
   - **图表**：如柱状图或折线图。
-  - **文件**：处理后的 Excel 文件可下载。
+  - **文件**：处理后的结果文件可下载。
+
+### 4. 数据概览与关系视图
+- “数据概览”页可生成字段概览并导出。
+- “关系与视图”页支持双表 Join，预览结果并保存为新数据集。
 
 ---
 

@@ -1,6 +1,6 @@
-﻿gradio==5.22.0
+gradio==5.22.0
 pandas==2.2.3
-pandasai==3.0.0b15
-pandasai-openai==0.1.5
+pandasai==3.0.0
+pandasai-openai==0.1.6
 matplotlib==3.7.5
 openpyxl==3.1.5
