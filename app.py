@@ -472,4 +472,4 @@ with gr.Blocks(title="AI-Excel数据处理与分析", theme=gr.themes.Ocean()) a
     )
 
 
-demo.launch(server_port=7860)
+demo.launch()
